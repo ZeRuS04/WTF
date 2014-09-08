@@ -16,7 +16,7 @@
 #include <QVariant>
 #include <QVector>
 #include <QSqlError>
-
+#include "selectplayer.h"
 
 class GameLogic : public QObject
 {
@@ -105,6 +105,8 @@ private:
 
     QString curCountry_;
     int curCountryPos_;
+
+    SelectPlayer select_;
 
     bool parsTxtFiles();
     void parsePngFilse();
