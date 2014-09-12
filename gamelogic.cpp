@@ -27,8 +27,6 @@ GameLogic::GameLogic(QObject *parent) :
         series_.push_back(0);
     }
     curSerie_ = 0;
-
-    select_.show();
     randImgURL();
 
 }
