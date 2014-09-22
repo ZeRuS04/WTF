@@ -213,5 +213,6 @@
         <file>PlayerNames.qml</file>
         <file>Stats.qml</file>
         <file>Fld.qml</file>
+        <file>Answers.qml</file>
     </qresource>
 </RCC>

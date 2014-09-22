@@ -20,14 +20,14 @@ GameLogic::GameLogic(QObject *parent) :
 
 
 
-//    playerName_ = "Player";
-//    for(int i = 0; i < 5; i++)
-//    {
-//        score_.push_back(0);
-//        series_.push_back(0);
-//    }
+    playerName_ = "Player";
+    for(int i = 0; i < 5; i++)
+    {
+        score_.push_back(0);
+        series_.push_back(0);
+    }
     addNewPlayer("Player");
-//    curSerie_ = 0;
+    curSerie_ = 0;
     changePlayer("Player");
     randImgURL();
 

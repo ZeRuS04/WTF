@@ -24,7 +24,8 @@ OTHER_FILES += \
     Mmenu.qml \
     Options.qml \
     PlayerNames.qml \
-    Stats.qml
+    Stats.qml \
+    Answers.qml
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 

@@ -47,8 +47,10 @@ ApplicationWindow {
         property string playerName: log.playerName();
         property int varintCount: log.variantCount();
         property color bgnColor: Qt.rgba(0,0,0,0);
-
+        property var answButtons;
         property int gState: 0 ;//0-игра, 1-ответы, 2-Options
+
+        Component.onCompleted: btCol.createAnswButton() ;
 
         function nextQuest(){
             if(!gameField.gState){
@@ -58,11 +60,13 @@ ApplicationWindow {
             gameField.score = log.score();
             flag.source = log.randImgURL();
             gameField.varintCount = log.variantCount();
+            //??? deleteng btns ???
+            btCol.createAnswButton() ;
 
-                for(var i = 0; i < repBtn.model; i++)
-                {
-                    repBtn.itemAt(i).txt = log.randCountry(i);
-                }
+//                for(var i = 0; i < repBtn.model; i++)
+//                {
+//                    repBtn.itemAt(i).txt = log.randCountry(i);
+//                }
 
 
             gameField.gState = 0;
@@ -124,92 +128,18 @@ ApplicationWindow {
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: gameField.bgnColor;
                 Column{
+                    id: btCol
                     spacing: 2;
                     Rectangle{
                         width: buttons.width;
                         height: buttons.height/(gameField.varintCount+2)/2;
                         color: gameField.bgnColor;
                     }
-
-                    Repeater{
-                        id: repBtn
-                        model: gameField.varintCount;
-                        Btn{
-                            id: oneButton;
-                            width: buttons.width;
-                            height: buttons.height/(gameField.varintCount+1);
-                            state: "Normal";
-                            txt: log.randCountry(index);
-
-                            states: [
-                                State{
-                                    name: "Normal"
-                                    PropertyChanges {
-                                        target: oneButton;
-                                        color: log.varButColor();
-                                        colorTxt: log.varButTextColor();
-                                    }
-                                },
-                                State{
-                                        name: "Pressed"
-                                        PropertyChanges {
-                                            target: oneButton;
-                                            color: log.varButColorPr();
-                                            colorTxt:log.varButTextColor();
-                                        }
-                                },
-                                State{
-                                        name: "Correct"
-                                        PropertyChanges {
-                                            target: oneButton;
-                                            color: Qt.rgba(0,1,0,0.7);
-                                            colorTxt: log.varButTextColor();
-                                        }
-                                        when: ((oneButton.txt === log.whatsTheFlag()) && gameField.gState)
-                                },
-                                State{
-                                        name: "Fail"
-                                        PropertyChanges {
-                                            target: oneButton;
-                                            color: Qt.rgba(1,0,0,0.7);
-                                            colorTxt: log.varButTextColor();
-                                        }
-                                        when: ((oneButton.txt !== log.whatsTheFlag()) && gameField.gState)
-                                }
-
-                            ]
-
-                            MouseArea{
-                                anchors.fill: parent;
-                                hoverEnabled: true;
-
-                                onEntered: {
-                                    if(!gameField.gState){
-                                        oneButton.state = "Pressed"
-                                    }
-                                }
-                                onExited: {
-                                    if(!gameField.gState){
-                                        oneButton.state = "Normal"
-                                    }
-                                }
-                                onPressed: {
-                                    if(!gameField.gState){
-                                        oneButton.state = "Pressed"
-                                    }
-                                }
-
-                                onClicked: {
-                                    if(!gameField.gState){
-                                        gameField.gState = 1;
-                                        log.itIsTrue(oneButton.txt)
-                                        gameField.score = log.score();
-                                    }
-
-                                }
-
-                            }
-                        }
+                    function createAnswButton(){
+                        gameField.answButtons = Qt.createComponent("Answers.qml");
+                         if (gameField.answButtons.status == Component.Ready)
+                             gameField.answButtons.createObject(btCol);
+                         gameField.answButtons.destroy();
                     }
 
                 }
@@ -236,7 +166,7 @@ ApplicationWindow {
                     anchors.fill: parent;
                     horizontalAlignment: Text.AlignHCenter;
                     verticalAlignment:  Text.AlignVCenter;
-                    text: gameField.playerName + "  score: " + gameField.score;
+                    text:"Score: " + gameField.score;
 //                    font.pointSize: 9 ;
                     color: "white";
 
@@ -332,6 +262,7 @@ ApplicationWindow {
 //            }
 //        }
 //    }
+
     Stats{
         id: stats
         anchors.fill: parent;
