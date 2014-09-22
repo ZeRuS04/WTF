@@ -58,9 +58,14 @@ ApplicationWindow {
             gameField.score = log.score();
             flag.source = log.randImgURL();
             gameField.varintCount = log.variantCount();
+
+                for(var i = 0; i < repBtn.model; i++)
+                {
+                    repBtn.itemAt(i).txt = log.randCountry(i);
+                }
+
+
             gameField.gState = 0;
-            repBtn.model = 0;
-            repBtn.model = gameField.varintCount;
             log.updatePlayerStat();
 
         }
@@ -275,31 +280,31 @@ ApplicationWindow {
         id: mMenu
         anchors.fill: parent;
         bgnColor: gameField.bgnColor;
-        visible: false;
-        Text{
-            anchors.bottom: parent.bottom;
-            anchors.left: parent.left
-            width: parent.width;
-            text: gameField.playerName;
-//            font.pointSize: 9 ;
-            color: "white";
+        visible: true;
+//        Text{
+//            anchors.bottom: parent.bottom;
+//            anchors.left: parent.left
+//            width: parent.width;
+//            text: gameField.playerName;
+////            font.pointSize: 9 ;
+//            color: "white";
 
-        }
+//        }
     }
     Options{
         id: optns
         anchors.fill: parent;
         bgnColor: gameField.bgnColor;
         visible: mMenu.optnsVisible;
-        Text{
-            anchors.bottom: parent.bottom;
-            anchors.left: parent.left
-            width: parent.width;
-            text: gameField.playerName;
-//            font.pointSize: 9 ;
-            color: "white";
+//        Text{
+//            anchors.bottom: parent.bottom;
+//            anchors.left: parent.left
+//            width: parent.width;
+//            text: gameField.playerName;
+////            font.pointSize: 9 ;
+//            color: "white";
 
-        }
+//        }
         Keys.onPressed: {
             if (event.key == Qt.Key_Back) {
                 mMenu.visible = true;
@@ -311,36 +316,36 @@ ApplicationWindow {
             }
         }
     }
-    PlayerNames{
-        id: chgPlayer
-        anchors.fill: parent;
-        bgnColor: gameField.bgnColor;
-        visible: mMenu.chgPlrVisible;
-        Keys.onPressed: {
-            if (event.key == Qt.Key_Back) {
-                mMenu.visible = true;
-                mMenu.gameVisible = false;
-                mMenu.optnsVisible = false;
-                mMenu.statVisible = false;
-                mMenu.chgPlrVisible = false;
-                event.accepted = true;
-            }
-        }
-    }
+//    PlayerNames{
+//        id: chgPlayer
+//        anchors.fill: parent;
+//        bgnColor: gameField.bgnColor;
+//        visible: mMenu.chgPlrVisible;
+//        Keys.onPressed: {
+//            if (event.key == Qt.Key_Back) {
+//                mMenu.visible = true;
+//                mMenu.gameVisible = false;
+//                mMenu.optnsVisible = false;
+//                mMenu.statVisible = false;
+//                mMenu.chgPlrVisible = false;
+//                event.accepted = true;
+//            }
+//        }
+//    }
     Stats{
         id: stats
         anchors.fill: parent;
         bgnColor: gameField.bgnColor;
         visible: mMenu.statVisible;
-        Text{
-            anchors.bottom: parent.bottom;
-            anchors.left: parent.left
-            width: parent.width;
-            text: gameField.playerName;
-//            font.pointSize: 9 ;
-            color: "white";
+//        Text{
+//            anchors.bottom: parent.bottom;
+//            anchors.left: parent.left
+//            width: parent.width;
+//            text: gameField.playerName;
+////            font.pointSize: 9 ;
+//            color: "white";
 
-        }
+//        }
         Keys.onPressed: {
             if (event.key == Qt.Key_Back) {
                 mMenu.visible = true;

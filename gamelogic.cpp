@@ -10,7 +10,7 @@ GameLogic::GameLogic(QObject *parent) :
     dbCreateConnection();
 
 
-    variantCount_ = 4;
+    variantCount_ = 6;
 
 
 
@@ -20,13 +20,15 @@ GameLogic::GameLogic(QObject *parent) :
 
 
 
-    playerName_ = "No Name";
-    for(int i = 0; i < 5; i++)
-    {
-        score_.push_back(0);
-        series_.push_back(0);
-    }
-    curSerie_ = 0;
+//    playerName_ = "Player";
+//    for(int i = 0; i < 5; i++)
+//    {
+//        score_.push_back(0);
+//        series_.push_back(0);
+//    }
+    addNewPlayer("Player");
+//    curSerie_ = 0;
+    changePlayer("Player");
     randImgURL();
 
 }
@@ -224,7 +226,22 @@ void GameLogic::addNewPlayer(const QString &name)
 {
     QSqlQuery query;
 
-    QString str = "SELECT id FROM playersStat ORDER BY id DESC ;";
+    QString str = "SELECT count(*) AS count FROM playersStat WHERE name = %1 ;";
+    str = str.arg(name);
+    if (!query.exec(str)) {
+        qDebug() << "Databese insert 'playersStat' error.";
+    }
+    QSqlRecord rec = query.record();
+    int result = 0;
+    while (query.next()) {
+        result = query.value(rec.indexOf("count")).toInt();
+    }
+    if( !result ){
+        changePlayer(name);
+        return;
+    }
+
+    str = "SELECT id FROM playersStat ORDER BY id DESC ;";
 
     int id = playerNames_.size();
 

@@ -6,7 +6,7 @@ Rectangle {
     property bool gameVisible: false;
     property bool optnsVisible: false;
     property bool statVisible: false;
-    property bool chgPlrVisible: true;
+//    property bool chgPlrVisible: true;
     color: bgnColor;
     Rectangle{
         id: butField
@@ -72,22 +72,6 @@ Rectangle {
                     anchors.fill: parent;
                     onClicked: {
                         menuField.statVisible = true;
-                        menuField.visible = false;
-                    }
-
-                }
-            }
-            Btn{
-                id: chgName
-                width: butField.width;
-                height: butField.height/7;
-                anchors.horizontalCenter: parent.horizontalCenter;
-                txt: qsTr("Change name");
-                fntSize: height/3;
-                MouseArea{
-                    anchors.fill: parent;
-                    onClicked: {
-                        menuField.chgPlrVisible = true;
                         menuField.visible = false;
                     }
 

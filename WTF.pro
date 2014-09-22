@@ -17,7 +17,14 @@ HEADERS += \
     gamelogic.h
 
 OTHER_FILES += \
-    android/AndroidManifest.xml
+    android/AndroidManifest.xml \
+    Btn.qml \
+    Fld.qml \
+    Main.qml \
+    Mmenu.qml \
+    Options.qml \
+    PlayerNames.qml \
+    Stats.qml
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 

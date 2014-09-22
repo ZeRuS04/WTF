@@ -26,7 +26,7 @@ Rectangle {
                     id: name;
                     width: 200;
                     height: 50;
-                    txt: qsTr("Name:");
+                    txt: qsTr("Number of poll options:");
                 }
                 Fld{
                     id: score;
@@ -43,25 +43,25 @@ Rectangle {
             }
             Repeater{
                 id: rep;
-                model: log.getPlayersCount();
+                model: 5;
                 Row{
                     Fld{
-                        id: plrName
+                        id: varCount
                         width: 200
                         height: 50
-                        txt: log.getPlayersName(index);
+                        txt: index+2
                     }
                     Fld{
                         id: plrScore;
                         width: 150;
                         height: 50;
-                        txt: log.getPlayersScore(index, varCount.varC+2);
+                        txt: log.getPlayersScore(0, index+2);
                     }
                     Fld{
                         id: plrSeries;
                         width: 150;
                         height: 50;
-                        txt: log.getPlayersSeries(index, varCount.varC+2);
+                        txt: log.getPlayersSeries(0, index+2);
                     }
                 }
 
@@ -96,30 +96,30 @@ Rectangle {
                     }
                 }
             }
-            Row{
-                spacing: 5
-                Text{
-                    id: slidTxt;
-                    width: butField.width-varCount.width;
-                    wrapMode: Text.WordWrap;
-                    text: qsTr("Select number of poll options:");
-                    font.pixelSize: back.fntSize;
-                    color: "white";
-                    horizontalAlignment: Text.AlignRight;
+//            Row{
+//                spacing: 5
+//                Text{
+//                    id: slidTxt;
+//                    width: butField.width-varCount.width;
+//                    wrapMode: Text.WordWrap;
+//                    text: qsTr("Select number of poll options:");
+//                    font.pixelSize: back.fntSize;
+//                    color: "white";
+//                    horizontalAlignment: Text.AlignRight;
 
-                }
-                ComboBox{
-                    id: varCount;
-                    property int varC: currentIndex;
-                    currentIndex: log.variantCount()-2;
-                    model: [2, 3, 4, 5, 6];
-                    width: 30;
-                    onCurrentIndexChanged: {
-                        rep.model = 0;
-                        rep.model = log.getPlayersCount();
-                    }
-                }
-            }
+//                }
+//                ComboBox{
+//                    id: varCount;
+//                    property int varC: currentIndex;
+//                    currentIndex: log.variantCount()-2;
+//                    model: [2, 3, 4, 5, 6];
+//                    width: 30;
+//                    onCurrentIndexChanged: {
+//                        rep.model = 0;
+//                        rep.model = log.getPlayersCount();
+//                    }
+//                }
+//            }
         }
     }
     onVisibleChanged: {
