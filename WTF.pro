@@ -3,8 +3,7 @@ TEMPLATE = app
 QT += qml quick widgets sql
 
 SOURCES += main.cpp \
-    gamelogic.cpp \
-    selectplayer.cpp
+    gamelogic.cpp
 
 RESOURCES += qml.qrc
 
@@ -15,14 +14,11 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    gamelogic.h \
-    selectplayer.h
+    gamelogic.h
 
 OTHER_FILES += \
     android/AndroidManifest.xml
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
-FORMS += \
-    form.ui
 

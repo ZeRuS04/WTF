@@ -42,6 +42,7 @@ ApplicationWindow {
         anchors.fill: parent;
         color:bgnColor;
         visible: mMenu.gameVisible;
+        focus: visible;
 
         property int score: log.score();
         property string playerName: log.playerName();
@@ -57,6 +58,7 @@ ApplicationWindow {
             }
             gameField.score = log.score();
             flag.source = log.randImgURL();
+
             gameField.varintCount = log.variantCount();
             gameField.gState = 0;
             repBtn.model = 0;
@@ -263,6 +265,7 @@ ApplicationWindow {
         Keys.onPressed: {
             if (event.key == Qt.Key_Back) {
                 mMenu.visible = true;
+                mMenu.focus = true;
                 mMenu.gameVisible = false;
                 mMenu.optnsVisible = false;
                 mMenu.statVisible = false;
@@ -291,6 +294,7 @@ ApplicationWindow {
         anchors.fill: parent;
         bgnColor: gameField.bgnColor;
         visible: mMenu.optnsVisible;
+        focus: visible;
         Text{
             anchors.bottom: parent.bottom;
             anchors.left: parent.left
@@ -303,6 +307,7 @@ ApplicationWindow {
         Keys.onPressed: {
             if (event.key == Qt.Key_Back) {
                 mMenu.visible = true;
+                mMenu.focus = true;
                 mMenu.gameVisible = false;
                 mMenu.optnsVisible = false;
                 mMenu.statVisible = false;
@@ -316,9 +321,11 @@ ApplicationWindow {
         anchors.fill: parent;
         bgnColor: gameField.bgnColor;
         visible: mMenu.chgPlrVisible;
+        focus: visible;
         Keys.onPressed: {
             if (event.key == Qt.Key_Back) {
                 mMenu.visible = true;
+                mMenu.focus = true;
                 mMenu.gameVisible = false;
                 mMenu.optnsVisible = false;
                 mMenu.statVisible = false;
@@ -332,6 +339,7 @@ ApplicationWindow {
         anchors.fill: parent;
         bgnColor: gameField.bgnColor;
         visible: mMenu.statVisible;
+        focus: visible;
         Text{
             anchors.bottom: parent.bottom;
             anchors.left: parent.left
@@ -344,6 +352,7 @@ ApplicationWindow {
         Keys.onPressed: {
             if (event.key == Qt.Key_Back) {
                 mMenu.visible = true;
+                mMenu.focus = true;
                 mMenu.gameVisible = false;
                 mMenu.optnsVisible = false;
                 mMenu.statVisible = false;

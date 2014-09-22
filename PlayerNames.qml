@@ -83,7 +83,7 @@ Rectangle {
             color: plNamesField.bgnColor;
             function createNameFinish(){
                 if(input.text !== ""){
-
+                    Qt.inputMethod.hide();
                     log.addNewPlayer(input.text);
                     input.text = "";
                     mMenu.visible = true;
@@ -105,13 +105,9 @@ Rectangle {
                     horizontalAlignment: TextInput.AlignHCenter
                     verticalAlignment: TextInput.AlignVCenter
                     text: "";
-                    validator: RegExpValidator { regExp: /[0-9A-Za-z]+/; }
+                    validator: RegExpValidator { regExp: /[0-9A-Za-zА-Яа-я]+/; }
                     maximumLength: 12;
-                    Keys.onPressed: {
-                        if(event.key == Qt.Key_Enter)
-                            Qt.inputMethod.hide();
-                    }
-
+                    onEditingFinished: Qt.inputMethod.hide();
                 }
             }
             Btn{
